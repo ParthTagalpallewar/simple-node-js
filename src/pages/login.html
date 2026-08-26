@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+</head>
+
+<body>
+
+    <h1>Login</h1>
+
+    <form id="loginForm">
+
+        <div>
+
+            <label>Username</label>
+
+            <input
+                type="text"
+                id="username"
+                required
+            >
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="password"
+                required
+            >
+
+        </div>
+
+        <br>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+
+    <p id="message"></p>
+
+
+    <p>
+        Don't have an account?
+        <a href="/signup">Create account</a>
+    </p>
+
+
+    <script>
+
+        const form =
+            document.getElementById("loginForm");
+
+        const message =
+            document.getElementById("message");
+
+
+        form.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+
+            const username =
+                document.getElementById("username").value;
+
+            const password =
+                document.getElementById("password").value;
+
+
+            try {
+
+                const response = await fetch(
+                    "/api/auth/login",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            username: username,
+                            password: password
+                        })
+
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (response.ok) {
+
+                    message.textContent =
+                        "Login successful!";
+
+                    // Go to home page
+                    window.location.href = "/";
+
+                } else {
+
+                    message.textContent =
+                        data.message;
+
+                }
+
+
+            } catch (error) {
+
+                message.textContent =
+                    "Something went wrong.";
+
+                console.error(error);
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
