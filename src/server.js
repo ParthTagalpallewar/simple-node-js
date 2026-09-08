@@ -115,7 +115,8 @@ app.get("/", (req, res) => {
 
 // Start server
 app.listen(
-    process.env.PORT,
+    process.env.PORT,   
+
     () => {
 
         console.log(
@@ -124,3 +125,9 @@ app.listen(
 
     }
 );
+
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "ok"
+    });
+});

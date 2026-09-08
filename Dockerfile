@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY . .
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY src ./src
+
+CMD ["npm", "start"]
+
