@@ -36,7 +36,7 @@ app.use(
         saveUninitialized: false,
 
         store: MongoStore.create({
-            mongoUrl: process.env.MONGO_URI
+            mongoUrl: "mongodb://mongodb:27017/task-api"
         }),
 
         cookie: {
@@ -120,7 +120,7 @@ app.listen(
     () => {
 
         console.log(
-            `Server running on http://localhost:${process.env.PORT}`
+            `Server running on http://localhost:3000`
         );
 
     }
