@@ -36,7 +36,7 @@ app.use(
         saveUninitialized: false,
 
         store: MongoStore.create({
-            mongoUrl: "mongodb://mongodb:27017/task-api"
+            mongoUrl: process.env.MONGO_URI
         }),
 
         cookie: {
