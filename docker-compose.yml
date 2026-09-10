@@ -3,6 +3,7 @@ services:
   node:
     build: .
     container_name: node-app
+    image: parth11072003/myFirstNodeJs:${TAG:-latest}
     ports:
       - "3000:3000"
     env_file:
